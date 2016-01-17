@@ -1,0 +1,86 @@
+elasticsearch:
+  build: ./elasticsearch
+  hostname: elasticsearch
+  command: elasticsearch -Des.node.master=true -Des.node.data=false -Des.node.name="master"
+  # restart: always 
+  volumes:
+    - ./elasticsearch/data/master:/usr/share/elasticsearch/data
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+  ports:
+    - "9200:9200"
+    - "9300:9300"
+  mem_limit: 1024m
+
+elasticsearch-node1:
+  build: ./elasticsearch
+  command: elasticsearch -Des.node.master=false -Des.node.data=true -Des.node.name="node1"
+  # restart: always
+  volumes:
+    - ./elasticsearch/data/node1:/usr/share/elasticsearch/data
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+  links:
+    - elasticsearch
+  expose:
+    - "9200"
+    - "9300"
+  mem_limit: 1024m
+
+elasticsearch-node2:
+  build: ./elasticsearch
+  command: elasticsearch -Des.node.master=false -Des.node.data=true -Des.node.name="node2"
+  # restart: always
+  volumes:
+    - ./elasticsearch/data/node2:/usr/share/elasticsearch/data
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+  links:
+    - elasticsearch
+  expose:
+    - "9200"
+    - "9300"
+  mem_limit: 1024m
+
+elasticsearch-node3:
+  build: ./elasticsearch
+  command: elasticsearch -Des.node.master=false -Des.node.data=true -Des.node.name="node3"
+  # restart: always
+  volumes:
+    - ./elasticsearch/data/node3:/usr/share/elasticsearch/data
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+  links:
+    - elasticsearch
+  expose:
+    - "9200"
+    - "9300"
+  mem_limit: 1024m
+
+elasticsearch-node4:
+  build: ./elasticsearch
+  command: elasticsearch -Des.node.master=false -Des.node.data=true -Des.node.name="node4"
+  # restart: always
+  volumes:
+    - ./elasticsearch/data/node4:/usr/share/elasticsearch/data
+    - /etc/localtime:/etc/localtime:ro
+    - /etc/timezone:/etc/timezone:ro
+  links:
+    - elasticsearch
+  expose:
+    - "9200"
+    - "9300"
+  mem_limit: 1024m
+
+kibana:
+  build: ./kibana
+  volumes:
+    - ./kibana/config/kibana.yml:/opt/kibana/config/kibana.yml
+  ports:
+    - "5601:5601"
+  # restart: always
+  links:
+    - elasticsearch
+  environment:
+     ELASTICSEARCH_URL: 'http://elasticsearch:9200'
+  mem_limit: 1024m

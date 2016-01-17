@@ -10,7 +10,7 @@ El planteamiento del proyecto hace uso de herramientas de BigData como Spark Str
 
 En el proyecto se incluyen los siguientes entregables:
 
-- [Código Fuente del proyecto](https://github.com/oscarruesga/utad-pebd-proyecto/tree/master/src/main).
-- [Contenedores docker](https://github.com/oscarruesga/utad-pebd-proyecto/tree/master/docker) que dan soporte a la versión distribuida completa de la aplicación.
-- [Memoria descriptiva](https://www.moolileo.com/memoria_pebd) del proyecto que incluye la descripción del objeto del proyecto, la tecnología utilizada y la arquitectura distribuida desplegada. También se incluye el anális, diseño e implementación de la solución sobre dicha arquitectura.
+- [Código Fuente del proyecto](src).
+- [Contenedores docker](docker) que dan soporte a la versión distribuida completa de la aplicación.
+- [Memoria descriptiva](http://www.moolileo.com/memoria_pebd) del proyecto que incluye la descripción del objeto del proyecto, la tecnología utilizada y la arquitectura distribuida desplegada. También se incluye el anális, diseño e implementación de la solución sobre dicha arquitectura.
 

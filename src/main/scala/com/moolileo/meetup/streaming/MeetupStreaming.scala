@@ -2,7 +2,6 @@ package com.moolileo.meetup.streaming
 
 import com.moolileo.meetup.Settings
 import com.moolileo.meetup.streaming.processes.EsPersistStreamRSVP
-import org.apache.hadoop.conf.Configuration
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.apache.spark.{SparkConf, SparkContext}
 

@@ -1,0 +1,157 @@
+[
+  {
+    "_id": "MEETUP-Trending-Topics",
+    "_type": "dashboard",
+    "_source": {
+      "title": "MEETUP - Trending Topics",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Evolución-de-los-trending-topics-por-pais\",\"panelIndex\":1,\"row\":1,\"size_x\":6,\"size_y\":8,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Trending-Topics-por-País\",\"panelIndex\":2,\"row\":3,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Global-Trending-Topics\",\"panelIndex\":3,\"row\":1,\"size_x\":3,\"size_y\":8,\"type\":\"visualization\"},{\"col\":10,\"id\":\"Total-Topics\",\"panelIndex\":4,\"row\":1,\"size_x\":3,\"size_y\":2,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Evolución-de-los-topics-por-pais-en-las-últimas-12-horas-en-intervalos-de-1-hora\",\"panelIndex\":5,\"row\":9,\"size_x\":12,\"size_y\":8,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":true}",
+      "uiStateJSON": "{\"P-1\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}}},\"P-2\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}}},\"P-4\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-2w/w",
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"meta\":{\"index\":\"meetup_country_trending_topics\",\"key\":\"topic\",\"value\":\"new\",\"disabled\":false,\"negate\":false,\"alias\":null},\"query\":{\"match\":{\"topic\":{\"query\":\"new\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}},{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "MEETUP-Analytics",
+    "_type": "dashboard",
+    "_source": {
+      "title": "MEETUP Analytics",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Evolución-de-los-trending-topics-por-pais\",\"panelIndex\":1,\"row\":1,\"size_x\":6,\"size_y\":8,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Trending-Topics-por-País\",\"panelIndex\":2,\"row\":1,\"size_x\":3,\"size_y\":8,\"type\":\"visualization\"},{\"id\":\"Global-Trending-Topics\",\"type\":\"visualization\",\"panelIndex\":3,\"size_x\":3,\"size_y\":8,\"col\":10,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":true}",
+      "uiStateJSON": "{\"P-1\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}}},\"P-2\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-2w/w",
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Asistencia-a-Eventos",
+    "_type": "dashboard",
+    "_source": {
+      "title": "Asistencia a Eventos",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Distribución-de-las-asistencia-a-eventos-geográficamente\",\"panelIndex\":1,\"row\":1,\"size_x\":7,\"size_y\":8,\"type\":\"visualization\"},{\"id\":\"Distribución-de-las-confirmaciones-de-asistencia-durante-la-última-hora.\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":4,\"size_y\":7,\"col\":8,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":true}",
+      "uiStateJSON": "{\"P-1\":{\"spy\":{\"mode\":{\"fill\":false,\"name\":null}}}}",
+      "version": 1,
+      "timeRestore": true,
+      "timeTo": "now",
+      "timeFrom": "now-15m",
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "Trending-Topics-por-País",
+    "_type": "visualization",
+    "_source": {
+      "title": "Trending Topics por País",
+      "visState": "{\"type\":\"table\",\"params\":{\"perPage\":100,\"showPartialRows\":true,\"showMeticsAtAllLevels\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"country\",\"size\":10000,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"topic\",\"size\":10000,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"meetup_country_trending_topics\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Evolución-de-los-topics-por-pais-en-las-últimas-12-horas-en-intervalos-de-1-hora",
+    "_type": "visualization",
+    "_source": {
+      "title": "Evolución de los topics por pais en las últimas 12 horas en intervalos de 1 hora",
+      "visState": "{\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"showCircles\":true,\"smoothLines\":true,\"interpolate\":\"linear\",\"scale\":\"linear\",\"drawLinesBetweenPoints\":true,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"counter\"}},{\"id\":\"2\",\"type\":\"date_range\",\"schema\":\"segment\",\"params\":{\"field\":\"date\",\"ranges\":[{\"from\":\"now-1h/h\",\"to\":\"now\"},{\"from\":\"now-2h/h\",\"to\":\"now-1h/h\"},{\"to\":\"now-2h/h\",\"from\":\"now-3h/h\"},{\"to\":\"now-3h/h\",\"from\":\"now-4h/h\"},{\"to\":\"now-4h/h\",\"from\":\"now-5h/h\"},{\"to\":\"now-5h/h\",\"from\":\"now-6h/h\"},{\"to\":\"now-6h/h\",\"from\":\"now-7h/h\"},{\"to\":\"now-7h/h\",\"from\":\"now-8h/h\"},{\"to\":\"now-8h/h\",\"from\":\"now-9h/h\"},{\"to\":\"now-9h/h\",\"from\":\"now-10h/h\"},{\"to\":\"now-10h/h\",\"from\":\"now-11h/h\"},{\"to\":\"now-11h/h\",\"from\":\"now-12h/h\"}]}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"topic\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\"}},{\"id\":\"4\",\"type\":\"terms\",\"schema\":\"split\",\"params\":{\"field\":\"country\",\"size\":100,\"order\":\"desc\",\"orderBy\":\"_term\",\"row\":true}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"meetup_country_trending_topics\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Evolución-de-los-trending-topics-por-pais",
+    "_type": "visualization",
+    "_source": {
+      "title": "Evolución de los trending topics por pais",
+      "visState": "{\"type\":\"tile_map\",\"params\":{\"addTooltip\":true,\"heatBlur\":15,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatNormalizeData\":true,\"heatRadius\":25,\"isDesaturated\":true,\"mapType\":\"Scaled Circle Markers\",\"wms\":{\"enabled\":false,\"options\":{\"attribution\":\"Maps provided by USGS\",\"format\":\"image/png\",\"layers\":\"0\",\"styles\":\"\",\"transparent\":true,\"version\":\"1.3.0\"},\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\"}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"coordinates\",\"autoPrecision\":true,\"mapZoom\":3,\"mapCenter\":[29.305561325527698,-54.228515625],\"precision\":2}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"meetup_country_trending_topics\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Distribución-de-las-asistencia-a-eventos-geográficamente",
+    "_type": "visualization",
+    "_source": {
+      "title": "Distribución de las asistencia a eventos geográficamente",
+      "visState": "{\"type\":\"tile_map\",\"params\":{\"addTooltip\":true,\"heatBlur\":15,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatNormalizeData\":true,\"heatRadius\":25,\"isDesaturated\":true,\"mapType\":\"Heatmap\",\"wms\":{\"enabled\":false,\"options\":{\"attribution\":\"Maps provided by USGS\",\"format\":\"image/png\",\"layers\":\"0\",\"styles\":\"\",\"transparent\":true,\"version\":\"1.3.0\"},\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\"}},\"aggs\":[{\"id\":\"1\",\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"attendees\"}},{\"id\":\"3\",\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"coordinates\",\"autoPrecision\":true,\"precision\":2}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"meetup_attending_by_date\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Global-Trending-Topics",
+    "_type": "visualization",
+    "_source": {
+      "title": "Global Trending Topics",
+      "visState": "{\"type\":\"table\",\"params\":{\"perPage\":100,\"showPartialRows\":true,\"showMeticsAtAllLevels\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"topic\",\"size\":10000,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"meetup_global_trending_topics\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Total-Topics",
+    "_type": "visualization",
+    "_source": {
+      "title": "Total Topics",
+      "visState": "{\"type\":\"metric\",\"params\":{\"fontSize\":\"85\"},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"meetup_global_trending_topics\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "Distribución-de-las-confirmaciones-de-asistencia-durante-la-última-hora.",
+    "_type": "visualization",
+    "_source": {
+      "title": "Distribución de las confirmaciones de asistencia durante la última hora.",
+      "visState": "{\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":false,\"isDonut\":true},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"date_range\",\"schema\":\"segment\",\"params\":{\"field\":\"day\",\"ranges\":[{\"from\":\"now-1m/m\",\"to\":\"now\"},{\"to\":\"now-1m/m\",\"from\":\"now-2m/m\"},{\"to\":\"now-2m/m\",\"from\":\"now-3m/m\"},{\"to\":\"now-3m/m\",\"from\":\"now-4m/m\"}]}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"country\",\"exclude\":{\"flags\":[\"MULTILINE\",\"UNICODE_CASE\"]},\"include\":{\"flags\":[\"UNICODE_CASE\"]},\"size\":100,\"order\":\"desc\",\"orderBy\":\"_term\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"meetup_attending_by_date\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  }
+]

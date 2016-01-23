@@ -1,14 +1,13 @@
 package com.moolileo.meetup.streaming.processes
 
-import java.sql.Timestamp
-import java.text.{ParsePosition, SimpleDateFormat}
-import java.util.{Calendar, Date, Locale}
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 import com.moolileo.meetup.model._
 import com.moolileo.meetup.websocket.WebSocketReader
 import org.apache.spark.Logging
 import org.apache.spark.storage.StorageLevel
-import org.apache.spark.streaming.{Seconds, Minutes, StreamingContext}
+import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}
 import org.elasticsearch.spark._
 
 
@@ -23,13 +22,11 @@ class EsPersistStreamRSVP extends Serializable with Logging {
 
     //Bulk store of stream in elasticsearch
     stream.foreachRDD(rdd => {
-      rdd.cache
       rdd.saveToEs("meetup-rsvps/meetup-rsvps",
         Map(  "es.mapping.timestamp" -> "mtime",
           "es.mapping.id" -> "rsvp_id",
           "es.nodes" -> EsNode,
           "es.port" -> EsPort))
-      rdd.unpersist()
     })
 
     // Filter Accepted RSVP
@@ -98,7 +95,7 @@ class EsPersistStreamRSVP extends Serializable with Logging {
       rdd.unpersist()
     })
 
-    rsvpByCountryByDate.foreachRDD( rdd => rdd.foreach( x => println(x.key + " : " + x.attendees + " : " + x.coordinates + " : " + x.day + " : " + x.month + " : " + x.year) ))
+    //rsvpByCountryByDate.foreachRDD( rdd => rdd.foreach( x => println(x.key + " : " + x.attendees + " : " + x.coordinates + " : " + x.day + " : " + x.month + " : " + x.year) ))
 
 
         val dateformat = new SimpleDateFormat("yyyyMMdd")
@@ -137,8 +134,8 @@ class EsPersistStreamRSVP extends Serializable with Logging {
         val countryTrendingTopics = stream
           .flatMap(rsvp => mapdata(rsvp.group))
           .map(x => ((x._1.topic_name, x._2, x._3), 1))
-          .reduceByKeyAndWindow((curr: Int, acc: Int) => curr + acc, Minutes(10), Seconds(10))
-          .filter(t => t._2 > 5) // min threshold = 5
+          .reduceByKeyAndWindow((curr: Int, acc: Int) => curr + acc, Minutes(5), Seconds(10))
+          .filter(t => t._2 > 10) // min threshold = 5
           .transform((rdd, time) => rdd.map {
           case ((topic: String, country: String, coord: String), count) => CountryTrendingTopics(topic + "-" + country, country, coord, topic, count, time.milliseconds)
         })

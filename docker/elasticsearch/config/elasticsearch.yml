@@ -1,0 +1,23 @@
+network.host: _eth0:ipv4_
+cluster.name: es-cluster
+
+script.engine.groovy.inline.update: on
+bootstrap.mlockall: true
+
+
+
+threadpool.bulk.queue_size: 3000
+
+#cluster.routing.allocation.disk.threshold_enabled: true
+#cluster.routing.allocation.disk.watermark.low:.97
+#cluster.routing.allocation.disk.watermark.high:.99
+
+
+discovery.zen.fd.ping_timeout: 30s
+discovery.zen.minimum_master_nodes: 1
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts: ["elasticsearch"]
+
+#discovery.zen.ping.multicast.enabled: true
+#discovery.zen.fd.ping_timeout: 30s
+#discovery.zen.ping.multicast.ttl: 30

@@ -55,6 +55,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 
-docker/elasticsearch
 
-
+/src/main/scala/com/moolileo/meetup/streaming/*.bak
+/src/main/scala/com/moolileo/meetup/streaming/processes/*.bak

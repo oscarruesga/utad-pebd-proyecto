@@ -12,5 +12,5 @@ En el proyecto se incluyen los siguientes entregables:
 
 - [Código Fuente del proyecto](src).
 - [Contenedores docker](docker) que dan soporte a la versión distribuida completa de la aplicación.
-- [Memoria descriptiva](http://www.moolileo.com/memoria_pebd) del proyecto que incluye la descripción del objeto del proyecto, la tecnología utilizada y la arquitectura distribuida desplegada. También se incluye el anális, diseño e implementación de la solución sobre dicha arquitectura.
+- [Memoria descriptiva](http://oscar.ruesga.com/memoria_pebd) del proyecto que incluye la descripción del objeto del proyecto, la tecnología utilizada y la arquitectura distribuida desplegada. También se incluye el anális, diseño e implementación de la solución sobre dicha arquitectura.
 
